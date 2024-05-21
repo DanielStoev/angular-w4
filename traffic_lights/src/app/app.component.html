@@ -1,32 +1,36 @@
 <div class="intersection">
   <div class="traffic-light horizontal top">
-    <div class="light red" [class.active]="topBottomLight === 'red'"></div>
-    <div class="light yellow" [class.active]="topBottomLight === 'yellow'"></div>
-    <div class="light green" [class.active]="topBottomLight === 'green'"></div>
-    <button class="cross-btn" [disabled]="topBottomLight === 'red'" (click)="onCrossClick()">пресечи</button>
+    <div class="light red" [class.active]="topBottomLight === 'red' && !isEmergency"></div>
+    <div class="light yellow" [class.active]="((leftRightLight === 'yellow' && !isEmergency) || (isEmergency && isBlinking))"></div>
+    <div class="light green" [class.active]="topBottomLight === 'green' && !isEmergency"></div>
+    <button class="cross-btn" [disabled]="topBottomLight === 'red' || isEmergency"
+      (click)="onCrossClick()">пресечи</button>
   </div>
   <div class="side-vertical left">
     <div class="traffic-light vertical">
-      <div class="light red" [class.active]="leftRightLight === 'red'"></div>
-      <div class="light yellow" [class.active]="leftRightLight === 'yellow'"></div>
-      <div class="light green" [class.active]="leftRightLight === 'green'"></div>
-      <button class="cross-btn" [disabled]="leftRightLight === 'red'"
+      <div class="light red" [class.active]="leftRightLight === 'red' && !isEmergency"></div>
+      <div class="light yellow" [class.active]="((leftRightLight === 'yellow' && !isEmergency) || (isEmergency && isBlinking))"></div>
+      <div class="light green" [class.active]="leftRightLight === 'green' && !isEmergency"></div>
+      <button class="cross-btn" [disabled]="leftRightLight === 'red' || isEmergency"
         (click)="onCrossClick()">пресечи</button>
     </div>
   </div>
   <div class="side-vertical right">
     <div class="traffic-light vertical">
-      <div class="light red" [class.active]="leftRightLight === 'red'"></div>
-      <div class="light yellow" [class.active]="leftRightLight === 'yellow'"></div>
-      <div class="light green" [class.active]="leftRightLight === 'green'"></div>
-      <button class="cross-btn" [disabled]="leftRightLight === 'red'"
+      <div class="light red" [class.active]="leftRightLight === 'red' && !isEmergency"></div>
+      <div class="light yellow" [class.active]="((leftRightLight === 'yellow' && !isEmergency) || (isEmergency && isBlinking))"></div>
+      <div class="light green" [class.active]="leftRightLight === 'green' && !isEmergency"></div>
+      <button class="cross-btn" [disabled]="leftRightLight === 'red' || isEmergency"
         (click)="onCrossClick()">пресечи</button>
     </div>
   </div>
   <div class="traffic-light horizontal bottom">
-    <div class="light red" [class.active]="topBottomLight === 'red'"></div>
-    <div class="light yellow" [class.active]="topBottomLight === 'yellow'"></div>
-    <div class="light green" [class.active]="topBottomLight === 'green'"></div>
-    <button class="cross-btn" [disabled]="topBottomLight === 'red'" (click)="onCrossClick()">пресечи</button>
+    <div class="light red" [class.active]="topBottomLight === 'red' && !isEmergency"></div>
+    <div class="light yellow" [class.active]="((leftRightLight === 'yellow' && !isEmergency) || (isEmergency && isBlinking))"></div>
+    <div class="light green" [class.active]="topBottomLight === 'green' && !isEmergency"></div>
+    <button class="cross-btn" [disabled]="topBottomLight === 'red' || isEmergency"
+      (click)="onCrossClick()">пресечи</button>
   </div>
 </div>
+<button class="emergency-btn" (click)="activateEmergency()"
+  [disabled]="isEmergency || emergencyCooldown">Авария</button>
